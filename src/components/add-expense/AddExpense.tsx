@@ -1,7 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, Radio, TextField } from '@mui/material';
+import { Button, Radio, RadioGroup, TextField } from '@mui/material';
 import { userStore } from '../../store/userStore.ts';
 import { addExpense } from '../../controllers/users.ts';
+import { icons } from '../../icons.tsx';
 
 export const AddExpense = ({ onClose }: { onClose: any }) => {
     const categories = userStore((store) => store.categories);
@@ -27,41 +28,71 @@ export const AddExpense = ({ onClose }: { onClose: any }) => {
             <div role="button" className="expense-close" onClick={onClose}>
                 <CloseIcon />
             </div>
-            <div className="expense-title">Добавить расход</div>
-            <form onSubmit={onSubmit}>
-                <TextField
-                    required
-                    name={'expense'}
-                    label={'Сумма расхода'}
-                    type={'number'}
-                />
-                <div className="expense-categories">
-                    {categories.map((category: any) => {
-                        return (
-                            <div key={category.id}>
-                                {category.name}
-                                <Radio
-                                    required={true}
-                                    value={category.id}
-                                    name="category"
-                                />
+            <div className="expense-content">
+                <div className="expense-title">Добавить расход</div>
+                <form onSubmit={onSubmit}>
+                    <TextField
+                        required
+                        name={'expense'}
+                        label={'Сумма расхода'}
+                        type={'number'}
+                    />
+                    <div className="expense-categories">
+                        <div className="expense-categories-title">
+                            Выберите категорию
+                        </div>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="female"
+                            name="category"
+                        >
+                            <div className="expense-radio">
+                                {categories.map((category: any) => {
+                                    return (
+                                        <div
+                                            className="expense-radio-item"
+                                            key={category.id}
+                                        >
+                                            <div className="expense-radio-item-label">
+                                                {category.name}
+                                            </div>
+                                            <div
+                                                style={{
+                                                    background: category.color,
+                                                }}
+                                                className="expense-radio-item-icon"
+                                            >
+                                                {
+                                                    icons[
+                                                        category.icon || 'heart'
+                                                    ]
+                                                }
+                                            </div>
+                                            <Radio
+                                                required={true}
+                                                value={category.id}
+                                                name="category"
+                                            />
+                                        </div>
+                                    );
+                                })}
                             </div>
-                        );
-                    })}
-                </div>
-                <TextField
-                    name={'description'}
-                    label={'Комментарий'}
-                    type={'text'}
-                />
-                <Button
-                    className={'expense-submit'}
-                    variant={'contained'}
-                    type={'submit'}
-                >
-                    Добавить
-                </Button>
-            </form>
+                        </RadioGroup>
+                    </div>
+                    <TextField
+                        name={'description'}
+                        label={'Комментарий'}
+                        type={'text'}
+                    />
+                    <Button
+                        className={'expense-submit'}
+                        variant={'contained'}
+                        type={'submit'}
+                    >
+                        Добавить
+                    </Button>
+                </form>
+            </div>
         </div>
     );
 };

@@ -23,7 +23,12 @@ export const Head = () => {
     const totalExpenses = expenses.reduce((acc, item) => {
         return acc + item.amount;
     }, 0);
+    const setUser = userStore((state) => state.setUser);
     const userData = userStore((state) => state.user);
+    const logoutHandler = () => {
+        logOutUser();
+        setUser(null);
+    };
     return (
         <div className="head">
             <Container>
@@ -41,11 +46,7 @@ export const Head = () => {
                                 {totalExpenses} <span>byn</span>
                             </div>
                         </div>
-
-                        <ColorButton
-                            variant="outlined"
-                            onClick={() => logOutUser()}
-                        >
+                        <ColorButton variant="outlined" onClick={logoutHandler}>
                             Выйти
                         </ColorButton>
                     </div>

@@ -5,11 +5,13 @@ export const Category = ({
     summ,
     total,
     color,
+    icon,
 }: {
     title: string;
     summ: number;
     total: number;
     color: string;
+    icon: string;
 }) => {
     const percent = Math.round((summ / total) * 100);
     return (
@@ -19,7 +21,7 @@ export const Category = ({
                 className="category-icon"
                 style={{ background: color || 'beige' }}
             >
-                {icons['heart']}
+                {icons[icon || 'heart']}
             </div>
             <div className="category-summ">
                 {summ} byn{' '}
