@@ -1,20 +1,20 @@
-import CottageOutlinedIcon from '@mui/Icons-material/CottageOutlined';
-import PetsOutlinedIcon from '@mui/Icons-material/PetsOutlined';
-import PaidOutlinedIcon from '@mui/Icons-material/PaidOutlined';
-import ShoppingBagOutlinedIcon from '@mui/Icons-material/ShoppingBagOutlined';
-import DirectionsCarFilledOutlinedIcon from '@mui/Icons-material/DirectionsCarFilledOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/Icons-material/FavoriteBorderOutlined';
-import LoyaltyOutlinedIcon from '@mui/Icons-material/LoyaltyOutlined';
-import FamilyRestroomOutlinedIcon from '@mui/Icons-material/FamilyRestroomOutlined';
-import LocalGasStationOutlinedIcon from '@mui/Icons-material/LocalGasStationOutlined';
-import SmokingRoomsOutlinedIcon from '@mui/Icons-material/SmokingRoomsOutlined';
-import RestaurantOutlinedIcon from '@mui/Icons-material/RestaurantOutlined';
-import MobileFriendlyOutlinedIcon from '@mui/Icons-material/MobileFriendlyOutlined';
-import AddCardOutlinedIcon from '@mui/Icons-material/AddCardOutlined';
-import HealthAndSafetyOutlinedIcon from '@mui/Icons-material/HealthAndSafetyOutlined';
-import BedroomBabyOutlinedIcon from '@mui/Icons-material/BedroomBabyOutlined';
-import ChildCareOutlinedIcon from '@mui/Icons-material/ChildCareOutlined';
-import DisabledByDefaultOutlinedIcon from '@mui/Icons-material/DisabledByDefaultOutlined';
+import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
+import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import LoyaltyOutlinedIcon from '@mui/icons-material/LoyaltyOutlined';
+import FamilyRestroomOutlinedIcon from '@mui/icons-material/FamilyRestroomOutlined';
+import LocalGasStationOutlinedIcon from '@mui/icons-material/LocalGasStationOutlined';
+import SmokingRoomsOutlinedIcon from '@mui/icons-material/SmokingRoomsOutlined';
+import RestaurantOutlinedIcon from '@mui/icons-material/RestaurantOutlined';
+import MobileFriendlyOutlinedIcon from '@mui/icons-material/MobileFriendlyOutlined';
+import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
+import HealthAndSafetyOutlinedIcon from '@mui/icons-material/HealthAndSafetyOutlined';
+import BedroomBabyOutlinedIcon from '@mui/icons-material/BedroomBabyOutlined';
+import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined';
+import DisabledByDefaultOutlinedIcon from '@mui/icons-material/DisabledByDefaultOutlined';
 
 export const icons: any = {
     home: <CottageOutlinedIcon />,
