@@ -7,20 +7,20 @@ import {
     signOut,
 } from 'firebase/auth';
 import {
+    addDoc,
     collection,
     doc,
     getDoc,
     getDocs,
     getFirestore,
+    onSnapshot,
     query,
+    serverTimestamp,
     setDoc,
     Timestamp,
     where,
-    addDoc,
-    serverTimestamp,
-    onSnapshot,
 } from 'firebase/firestore';
-import { Expense } from '../types.ts';
+import { Expense, UserSettings } from '../types.ts';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -104,16 +104,41 @@ export const getCurrentUserFirebase = (
     return onAuthStateChanged(auth, callback);
 };
 
+const USER_SETTINGS_LS_KEY = 'finance-klnr-user-settings';
+export const getUserSettingsFirebase = async (
+    userId: string
+): Promise<UserSettings | null> => {
+    let result: UserSettings | null = null;
+    try {
+        const settingsFromLocalStorage =
+            localStorage.getItem(USER_SETTINGS_LS_KEY);
+        if (settingsFromLocalStorage) {
+            result = JSON.parse(settingsFromLocalStorage);
+        } else {
+            const userSettingsRef = doc(db, 'users_settings', userId);
+            const userSettingsSnap = await getDoc(userSettingsRef);
+            const userSettings = userSettingsSnap.data();
+            result = userSettings as UserSettings;
+        }
+    } catch (e) {
+        console.log('no user found', e);
+    }
+    return result;
+};
+
+// export const setUserSettings = async (userSettings: UserSettings) => {
+//     localStorage.setItem(USER_SETTINGS_LS_KEY, JSON.stringify(userSettings));
+// };
+
 export const fetchUserDataFirebase = async (userId: string) => {
     try {
         const userRef = doc(db, 'users', userId);
         const userSnap = await getDoc(userRef);
-
         if (!userSnap.exists()) {
             throw new Error('Нет данных о пользователе');
         }
-
         const userData = userSnap.data();
+        console.log(userData);
         return { user: { ...userData, id: userId } };
     } catch (error) {
         console.error('Ошибка при загрузке данных:', error);

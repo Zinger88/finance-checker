@@ -60,7 +60,7 @@ export const Categories: FC = () => {
                             expenses
                         )}
                         key={categoryItem.id}
-                        className="category"
+                        className="categories-item"
                     >
                         <Category
                             icon={categoryItem.icon}

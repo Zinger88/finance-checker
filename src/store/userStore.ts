@@ -1,13 +1,5 @@
 import { create } from 'zustand';
-
-interface User {
-    id: string;
-    name: string;
-    email: string;
-    settings: {
-        categoriesOrder: string[];
-    };
-}
+import { User, UserSettings } from '../types.ts';
 
 interface Expense {
     id: string;
@@ -18,8 +10,10 @@ interface Expense {
 
 interface StoreState {
     user: User | null;
+    userSettings: UserSettings | null;
     expenses: Expense[];
     categories: any;
+    setUserSettings: (userSettings: UserSettings) => void;
     setCategories: (categories: any) => void;
     setUser: (user: User | null) => void;
     setExpenses: (expenses: Expense[]) => void;
@@ -30,6 +24,8 @@ export const userStore = create<StoreState>((set) => ({
     user: null,
     expenses: [],
     categories: [],
+    userSettings: null,
+    setUserSettings: (userSettings) => set({ userSettings }),
     setCategories: (categories) => set({ categories }),
     setUser: (user) => set({ user }),
     setExpenses: (expenses) => set({ expenses }),

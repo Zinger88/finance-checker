@@ -13,12 +13,13 @@ export const MainPage = () => {
             <Diagramm />
             <Categories />
             <div className="actions">
-                <button
+                <div
+                    role="button"
                     className="actions-add"
                     onClick={() => setShowAddExpense(true)}
                 >
                     +
-                </button>
+                </div>
             </div>
             {showAddExpense && (
                 <AddExpense onClose={() => setShowAddExpense(false)} />

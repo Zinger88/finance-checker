@@ -1,17 +1,18 @@
 import { SignUpErrorEnum } from '../constants';
 import {
-    signUpFirebase,
-    signInFirebase,
-    logoutFirebase,
-    getCurrentUserFirebase,
-    fetchUserDataFirebase,
-    auth,
-    getUserCategoriesFirebase,
     addExpenseFirebase,
-    subscribeToExpensesFirebase,
+    auth,
+    fetchUserDataFirebase,
+    getCurrentUserFirebase,
     getExpensesForMonthFirebase,
+    getUserCategoriesFirebase,
+    getUserSettingsFirebase,
+    logoutFirebase,
+    signInFirebase,
+    signUpFirebase,
+    subscribeToExpensesFirebase,
 } from '../db/firebase.ts';
-import { Expense } from '../types.ts';
+import { Expense, UserSettings } from '../types.ts';
 
 export const signUpUser = async (
     email: string,
@@ -46,6 +47,12 @@ export const getCurrentUser = (callback: (user: any | null) => void) => {
 
 export const fetchUserData = async (userId: string): Promise<any> => {
     return fetchUserDataFirebase(userId);
+};
+
+export const getUserSettings = async (
+    userId: string
+): Promise<UserSettings | null> => {
+    return getUserSettingsFirebase(userId);
 };
 
 export const getAuth = () => {

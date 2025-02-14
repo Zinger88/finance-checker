@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { userStore } from '../../store/userStore';
 import {
     getCurrentUser,
-    fetchUserData,
-    getUserCategories,
     getExpenses,
+    getUserCategories,
+    getUserSettings,
 } from '../../controllers/users';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -14,6 +14,7 @@ export const AuthChecker = ({ children }: { children: React.ReactNode }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const setUser = userStore((state) => state.setUser);
+    const setUserSettings = userStore((state) => state.setUserSettings);
     const setExpenses = userStore((state) => state.setExpenses);
     const setCategories = userStore((state) => state.setCategories);
     useEffect(() => {
@@ -22,11 +23,20 @@ export const AuthChecker = ({ children }: { children: React.ReactNode }) => {
             const userId = user?.uid;
             if (userId) {
                 try {
-                    const { user: userData } = await fetchUserData(userId);
+                    //const { user: userData } = await fetchUserData(userId);
+                    const userSettings = await getUserSettings(userId);
+                    if (userSettings) {
+                        console.log(userSettings);
+                        setUserSettings(userSettings);
+                    }
                     const categories = await getUserCategories(userId);
                     unsubscribeExpenses = getExpenses(userId, setExpenses);
                     setCategories(categories);
-                    setUser(userData);
+                    setUser({
+                        id: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                    });
                     navigate('/');
                 } catch {
                     console.warn('Ошибка загрузки данных пользователя');
