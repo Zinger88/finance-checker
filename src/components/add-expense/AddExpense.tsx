@@ -1,8 +1,9 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, Radio, RadioGroup, TextField } from '@mui/material';
 import { userStore } from '../../store/userStore.ts';
-import { addExpense } from '../../controllers/users.ts';
-import { icons } from '../../icons.tsx';
+import { addExpense } from '../../controllers';
+import { Category } from '../category/Category.tsx';
+import { AddCategory } from '../add-category/AddCategory.tsx';
 
 export const AddExpense = ({ onClose }: { onClose: any }) => {
     const categories = userStore((store) => store.categories);
@@ -53,21 +54,11 @@ export const AddExpense = ({ onClose }: { onClose: any }) => {
                                             className="expense-radio-item"
                                             key={category.id}
                                         >
-                                            <div className="expense-radio-item-label">
-                                                {category.name}
-                                            </div>
-                                            <div
-                                                style={{
-                                                    background: category.color,
-                                                }}
-                                                className="expense-radio-item-icon"
-                                            >
-                                                {
-                                                    icons[
-                                                        category.icon || 'heart'
-                                                    ]
-                                                }
-                                            </div>
+                                            <Category
+                                                title={category.name}
+                                                color={category.color}
+                                                icon={category.icon}
+                                            />
                                             <Radio
                                                 required={true}
                                                 value={category.id}
@@ -92,6 +83,9 @@ export const AddExpense = ({ onClose }: { onClose: any }) => {
                         Добавить
                     </Button>
                 </form>
+                <div>
+                    <AddCategory />
+                </div>
             </div>
         </div>
     );

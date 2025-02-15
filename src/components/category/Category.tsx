@@ -8,12 +8,12 @@ export const Category = ({
     icon,
 }: {
     title: string;
-    summ: number;
-    total: number;
+    summ?: number;
+    total?: number;
     color: string;
     icon: string;
 }) => {
-    const percent = Math.round((summ / total) * 100);
+    const percent = summ && total ? Math.round((summ / total) * 100) : null;
     return (
         <div className="category">
             <div className="category-title">{title}</div>
@@ -23,10 +23,12 @@ export const Category = ({
             >
                 {icons[icon || 'heart']}
             </div>
-            <div className="category-summ">
-                {summ} byn{' '}
-                <span className="category-percent">({percent}%)</span>
-            </div>
+            {summ && summ > 0 && percent && (
+                <div className="category-summ">
+                    {summ} byn{' '}
+                    <span className="category-percent">({percent}%)</span>
+                </div>
+            )}
         </div>
     );
 };

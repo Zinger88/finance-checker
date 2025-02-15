@@ -6,7 +6,7 @@ import {
     getExpenses,
     getUserCategories,
     getUserSettings,
-} from '../../controllers/users';
+} from '../../controllers/';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export const AuthChecker = ({ children }: { children: React.ReactNode }) => {
@@ -52,7 +52,10 @@ export const AuthChecker = ({ children }: { children: React.ReactNode }) => {
 
         return () => {
             unsubscribeUser();
-            if (unsubscribeExpenses !== null) {
+            if (
+                unsubscribeExpenses !== null &&
+                typeof unsubscribeExpenses === 'function'
+            ) {
                 unsubscribeExpenses();
             }
         };

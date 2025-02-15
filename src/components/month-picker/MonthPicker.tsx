@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getExpensesForMonth } from '../../controllers/users.ts';
+import { getExpensesForMonth } from '../../controllers';
 import { userStore } from '../../store/userStore.ts';
 import { Button } from '@mui/material';
 

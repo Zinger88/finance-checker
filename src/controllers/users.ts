@@ -1,18 +1,14 @@
 import { SignUpErrorEnum } from '../constants';
 import {
-    addExpenseFirebase,
     auth,
     fetchUserDataFirebase,
     getCurrentUserFirebase,
-    getExpensesForMonthFirebase,
-    getUserCategoriesFirebase,
     getUserSettingsFirebase,
     logoutFirebase,
     signInFirebase,
     signUpFirebase,
-    subscribeToExpensesFirebase,
 } from '../db/firebase.ts';
-import { Expense, UserSettings } from '../types.ts';
+import { UserSettings } from '../types.ts';
 
 export const signUpUser = async (
     email: string,
@@ -57,41 +53,4 @@ export const getUserSettings = async (
 
 export const getAuth = () => {
     return auth;
-};
-
-export const getUserCategories = async (userId: string) => {
-    const result = await getUserCategoriesFirebase(userId);
-    console.log(result);
-    return result;
-};
-
-export const addExpense = async ({
-    userId,
-    categoryId,
-    amount,
-    description,
-}: {
-    userId: string;
-    categoryId: string;
-    amount: number;
-    description: string;
-}) => {
-    await addExpenseFirebase({
-        userId,
-        categoryId,
-        amount,
-        description,
-    });
-};
-
-export const getExpenses = (userId: string, callback: any): any => {
-    subscribeToExpensesFirebase(userId, callback);
-};
-
-export const getExpensesForMonth = async (
-    userId: string,
-    year: number,
-    month: number
-): Promise<Expense[]> => {
-    return getExpensesForMonthFirebase(userId, year, month);
 };

@@ -258,3 +258,24 @@ export const addExpenseFirebase = async ({
         console.error('Ошибка при добавлении расхода:', error);
     }
 };
+
+export const addUserCategoryFirebase = async (
+    userId: string,
+    categoryName: string,
+    color: string = 'grey',
+    icon: string = 'heart'
+) => {
+    try {
+        const docRef = await addDoc(collection(db, 'user_categories'), {
+            userId: userId,
+            id: crypto.randomUUID(),
+            name: categoryName,
+            color: color,
+            icon: icon,
+        });
+
+        console.log('Категория добавлена:', docRef.id);
+    } catch (error) {
+        console.error('Ошибка при добавлении категории:', error);
+    }
+};
