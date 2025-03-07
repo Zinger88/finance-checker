@@ -97,32 +97,6 @@ export const Categories: FC = () => {
                     </div>
                 );
             })}
-            {categories.map((categoryItem: any) => {
-                const expenses = categoriesObject[categoryItem.id];
-                if (!expenses) return null;
-                const totalByCategory = expenses.reduce(
-                    (acc: number, item: any) => acc + item.amount,
-                    0
-                );
-                return (
-                    <div
-                        onClick={handleCategoryClick(
-                            categoryItem.name,
-                            expenses
-                        )}
-                        key={categoryItem.id}
-                        className="categories-item"
-                    >
-                        <Category
-                            icon={categoryItem.icon}
-                            color={categoryItem.color}
-                            title={categoryItem.name}
-                            summ={totalByCategory}
-                            total={total}
-                        />
-                    </div>
-                );
-            })}
         </div>
     );
 };
