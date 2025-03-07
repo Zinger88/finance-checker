@@ -1,7 +1,8 @@
-import { Button, TextField } from '@mui/material';
+import { Button, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useState } from 'react';
 import { userStore } from '../../store/userStore.ts';
 import { addUserCategory } from '../../controllers';
+import { CATEGORIES, icons } from '../../icons.tsx';
 
 export const AddCategory = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,7 +14,7 @@ export const AddCategory = () => {
         const categoryName = form.category.value;
         const color = form.color.value;
         const icon = form.icon.value;
-        if (userId) {
+        if (userId && categoryName) {
             await addUserCategory(userId, categoryName, color, icon);
         } else {
             console.log('Something went wrong with adding category');
@@ -37,11 +38,25 @@ export const AddCategory = () => {
                             name={'color'}
                             type={'text'}
                         />
-                        <TextField
-                            label={'Иконка категории'}
-                            name={'icon'}
-                            type={'text'}
-                        />
+                        <InputLabel variant="standard" htmlFor="icon">
+                            Иконка категории
+                        </InputLabel>
+                        <Select
+                            aria-placeholder={'Иконка'}
+                            labelId="icon-label"
+                            id="icon"
+                            name="icon"
+                            label="Иконка"
+                            defaultValue={'heart'}
+                        >
+                            {CATEGORIES.map((category) => {
+                                return (
+                                    <MenuItem value={category}>
+                                        {icons[category]}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
                         <Button type="submit">Добавить категорию</Button>
                     </form>
                 </div>

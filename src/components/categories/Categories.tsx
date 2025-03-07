@@ -9,6 +9,7 @@ export const Categories: FC = () => {
     const categoriesObject = groupByCategory(expenses, 'categoryId');
     const total = expenses.reduce((acc, item) => acc + item.amount, 0);
     const categories = userStore((store) => store.categories);
+    const userSettings = userStore((store) => store.userSettings);
     const [details, setDetails] = useState<{
         expenses: any;
         categoryName: string;
@@ -37,8 +38,18 @@ export const Categories: FC = () => {
                     <div className="category-details-list">
                         {details.expenses.map((detail: any) => {
                             return (
-                                <div className="category-details-item">
-                                    <span>{detail.amount}</span>
+                                <div
+                                    key={detail.date.seconds}
+                                    className="category-details-item"
+                                >
+                                    <span>
+                                        {detail.amount} {userSettings?.currency}
+                                    </span>
+                                    <span className="category-details-item-date">
+                                        <TimestampDisplay
+                                            seconds={detail.date.seconds}
+                                        />
+                                    </span>
                                     <span>{detail.description}</span>
                                 </div>
                             );
@@ -74,4 +85,20 @@ export const Categories: FC = () => {
             })}
         </div>
     );
+};
+
+const TimestampDisplay = ({
+    seconds,
+}: {
+    seconds: number;
+    nanoseconds?: number;
+}) => {
+    const date = new Date(seconds * 1000);
+    const formattedDate = date.toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
+
+    return <div>{formattedDate}</div>;
 };

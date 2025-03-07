@@ -3,6 +3,7 @@ import { Categories } from '../categories/Categories.tsx';
 import { useState } from 'react';
 import { AddExpense } from '../add-expense/AddExpense.tsx';
 import { MonthPicker } from '../month-picker/MonthPicker.tsx';
+import { Add } from '@mui/icons-material';
 
 export const MainPage = () => {
     const [showAddExpense, setShowAddExpense] = useState(false);
@@ -18,7 +19,7 @@ export const MainPage = () => {
                     className="actions-add"
                     onClick={() => setShowAddExpense(true)}
                 >
-                    +
+                    <Add />
                 </div>
             </div>
             {showAddExpense && (

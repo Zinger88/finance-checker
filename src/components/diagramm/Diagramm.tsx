@@ -25,13 +25,13 @@ export const Diagramm = () => {
                 {total} {userSettings?.currency}
             </div>
             <ResponsiveContainer>
-                <PieChart width={350} height={250}>
+                <PieChart width={300} height={150}>
                     <Pie
                         data={data}
                         cx={'50%'}
                         cy={'50%'}
-                        innerRadius={60}
-                        outerRadius={80}
+                        innerRadius={40}
+                        outerRadius={60}
                         fill="#8884d8"
                         paddingAngle={1}
                         dataKey="value"
