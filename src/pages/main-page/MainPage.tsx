@@ -1,8 +1,8 @@
-import { Diagramm } from '../diagramm/Diagramm';
-import { Categories } from '../categories/Categories.tsx';
+import { Diagramm } from '../../widgets/diagramm/Diagramm.tsx';
+import { Categories } from '../../widgets/categories/Categories.tsx';
 import { useState } from 'react';
-import { AddExpense } from '../add-expense/AddExpense.tsx';
-import { MonthPicker } from '../month-picker/MonthPicker.tsx';
+import { AddExpense } from '../../features/add-expense/AddExpense.tsx';
+import { MonthPicker } from '../../widgets/month-picker/MonthPicker.tsx';
 import { Add } from '@mui/icons-material';
 
 export const MainPage = () => {

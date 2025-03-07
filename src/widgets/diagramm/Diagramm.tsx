@@ -1,6 +1,6 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { userStore } from '../../store/userStore.ts';
-import { arrayToObject, groupByCategory } from '../../utils.ts';
+import { arrayToObject, groupByCategory } from '../../shared/utils.ts';
 
 export const Diagramm = () => {
     const expenses = userStore((store) => store.expenses);

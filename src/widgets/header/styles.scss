@@ -1,0 +1,40 @@
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--main-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 1;
+  &-user {
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.2s;
+    }
+  }
+  &-right {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+  &-title {
+    font-weight: bold;
+    font-weight: 200;
+  }
+  &-summ {
+    font-weight: 900;
+  }
+}

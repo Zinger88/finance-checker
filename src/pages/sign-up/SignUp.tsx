@@ -1,7 +1,7 @@
 import { Button, TextField } from '@mui/material';
-import { signUpUser } from '../../controllers/users';
+import { signUpUser } from '../../controllers/users.ts';
 import { useNavigate } from 'react-router';
-import { SignUpErrorEnum } from '../../constants';
+import { SignUpErrorEnum } from '../../shared/constants.ts';
 
 export const SignUp = () => {
     const navigate = useNavigate();

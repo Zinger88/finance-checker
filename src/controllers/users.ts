@@ -1,4 +1,4 @@
-import { SignUpErrorEnum } from '../constants';
+import { SignUpErrorEnum } from '../shared/constants.ts';
 import {
     auth,
     fetchUserDataFirebase,
@@ -8,7 +8,7 @@ import {
     signInFirebase,
     signUpFirebase,
 } from '../db/firebase.ts';
-import { UserSettings } from '../types.ts';
+import { UserSettings } from '../shared/types.ts';
 
 export const signUpUser = async (
     email: string,

@@ -1,5 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import { signInUser } from '../../controllers/users';
+import { signInUser } from '../../controllers/users.ts';
 import { useNavigate } from 'react-router';
 
 export const SignIn = () => {

@@ -1,4 +1,5 @@
-import { icons } from '../../icons';
+import { icons } from '../../icons.tsx';
+import './styles.scss';
 
 export const Category = ({
     title,

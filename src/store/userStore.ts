@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { User, UserSettings } from '../types.ts';
+import { User, UserSettings } from '../shared/types.ts';
 
 interface Expense {
     id: string;

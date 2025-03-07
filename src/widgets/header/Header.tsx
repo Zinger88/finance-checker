@@ -1,8 +1,11 @@
 import { Button, ButtonProps } from '@mui/material';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { styled } from '@mui/material/styles';
-import { logOutUser } from '../../controllers/users';
-import { userStore } from '../../store/userStore';
-import { Container } from '../container/Container';
+import { logOutUser } from '../../controllers/users.ts';
+import { userStore } from '../../store/userStore.ts';
+import { Container } from '../../shared/ui/container/Container.tsx';
+
+import './styles.scss';
 
 const ColorButton = styled(Button)<ButtonProps>(() => ({
     backgroundColor: 'white',
@@ -18,7 +21,7 @@ const ColorButton = styled(Button)<ButtonProps>(() => ({
     },
 }));
 
-export const Head = () => {
+export const Header = () => {
     const expenses = userStore((state) => state.expenses);
     const totalExpenses = expenses.reduce((acc, item) => {
         return acc + item.amount;
@@ -46,9 +49,17 @@ export const Head = () => {
                                 {totalExpenses} <span>byn</span>
                             </div>
                         </div>
-                        <ColorButton variant="outlined" onClick={logoutHandler}>
-                            Выйти
-                        </ColorButton>
+                        <div className="head-right">
+                            <div className="head-user">
+                                <AccountBoxIcon />
+                            </div>
+                            <ColorButton
+                                variant="outlined"
+                                onClick={logoutHandler}
+                            >
+                                Выйти
+                            </ColorButton>
+                        </div>
                     </div>
                 ) : (
                     <span>Войдите в аккаунт</span>

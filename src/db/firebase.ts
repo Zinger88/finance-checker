@@ -20,7 +20,7 @@ import {
     Timestamp,
     where,
 } from 'firebase/firestore';
-import { Expense, UserSettings } from '../types.ts';
+import { Expense, UserSettings } from '../shared/types.ts';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

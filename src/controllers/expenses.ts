@@ -3,7 +3,7 @@ import {
     getExpensesForMonthFirebase,
     subscribeToExpensesFirebase,
 } from '../db/firebase.ts';
-import { Expense } from '../types.ts';
+import { Expense } from '../shared/types.ts';
 
 export const addExpense = async ({
     userId,

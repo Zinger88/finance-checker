@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { userStore } from '../../store/userStore';
+import { userStore } from '../../store/userStore.ts';
 import {
     getCurrentUser,
     getExpenses,
     getUserCategories,
     getUserSettings,
-} from '../../controllers/';
+} from '../../controllers';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export const AuthChecker = ({ children }: { children: React.ReactNode }) => {
@@ -75,7 +75,7 @@ export const AuthChecker = ({ children }: { children: React.ReactNode }) => {
                     position: 'fixed',
                 }}
             >
-                <CircularProgress />
+                <CircularProgress color="inherit" />
             </div>
         );
 
