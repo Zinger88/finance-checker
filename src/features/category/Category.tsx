@@ -27,7 +27,7 @@ export const Category = ({
             {summ && summ > 0 && percent && (
                 <div className="category-summ">
                     {summ} byn{' '}
-                    <span className="category-percent">({percent}%)</span>
+                    <span className="category-percent">{percent}%</span>
                 </div>
             )}
         </div>

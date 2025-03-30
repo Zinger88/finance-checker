@@ -41,23 +41,24 @@ export const Categories: FC = () => {
     const categoriesObject = groupByCategory(expenses, 'categoryId');
     const total = expenses.reduce((acc, item) => acc + item.amount, 0);
     const categories = userStore((store) => store.categories);
+    console.log({ categories, categoriesObject });
     const userSettings = userStore((store) => store.userSettings);
-    const [details, setDetails] = useState<{
+    const [detailsByCategory, setDetailsByCategory] = useState<{
         expenses: any;
         categoryName: string;
     } | null>(null);
     const handleCategoryClick = (categoryName: string, expenses: any) => () => {
-        setDetails({ categoryName, expenses: expenses });
+        setDetailsByCategory({ categoryName, expenses: expenses });
     };
     const onCloseDetails = () => {
-        setDetails(null);
+        setDetailsByCategory(null);
     };
     return (
         <div className={'categories'}>
-            {details && (
+            {detailsByCategory && (
                 <CategoryDetails
                     onClick={onCloseDetails}
-                    details={details}
+                    details={detailsByCategory}
                     element={(detail: any) => {
                         return (
                             <div
@@ -78,32 +79,51 @@ export const Categories: FC = () => {
                     }}
                 />
             )}
-            {categories.map((categoryItem: any) => {
-                const expenses = categoriesObject[categoryItem.id];
-                if (!expenses) return null;
-                const totalByCategory = expenses.reduce(
-                    (acc: number, item: any) => acc + item.amount,
-                    0
-                );
-                return (
-                    <div
-                        onClick={handleCategoryClick(
-                            categoryItem.name,
-                            expenses
-                        )}
-                        key={categoryItem.id}
-                        className="categories-item"
-                    >
-                        <Category
-                            icon={categoryItem.icon}
-                            color={categoryItem.color}
-                            title={categoryItem.name}
-                            summ={totalByCategory}
-                            total={total}
-                        />
-                    </div>
-                );
-            })}
+            {categories
+                .filter((item: any) => {
+                    return categoriesObject[item.id];
+                })
+                .sort((a: any, b: any) => {
+                    const expensesA = categoriesObject[a.id];
+                    if (!expensesA) return;
+                    const totalA = expensesA.reduce(
+                        (acc: number, item: any) => acc + item.amount,
+                        0
+                    );
+                    const expensesB = categoriesObject[b.id];
+                    if (!expensesB) return;
+                    const totalB = expensesB.reduce(
+                        (acc: number, item: any) => acc + item.amount,
+                        0
+                    );
+                    return totalB - totalA;
+                })
+                .map((categoryItem: any) => {
+                    const expenses = categoriesObject[categoryItem.id];
+                    if (!expenses) return null;
+                    const totalByCategory = expenses.reduce(
+                        (acc: number, item: any) => acc + item.amount,
+                        0
+                    );
+                    return (
+                        <div
+                            onClick={handleCategoryClick(
+                                categoryItem.name,
+                                expenses
+                            )}
+                            key={categoryItem.id}
+                            className="categories-item"
+                        >
+                            <Category
+                                icon={categoryItem.icon}
+                                color={categoryItem.color}
+                                title={categoryItem.name}
+                                summ={totalByCategory}
+                                total={total}
+                            />
+                        </div>
+                    );
+                })}
         </div>
     );
 };
