@@ -65,7 +65,9 @@ export const Categories: FC = () => {
                                 key={detail.date.seconds}
                                 className="category-details-item"
                             >
-                                <span>
+                                <span
+                                    className={'category-details-item-amount'}
+                                >
                                     {detail.amount} {userSettings?.currency}
                                 </span>
                                 <span className="category-details-item-date">
@@ -73,7 +75,9 @@ export const Categories: FC = () => {
                                         seconds={detail.date.seconds}
                                     />
                                 </span>
-                                <span>{detail.description}</span>
+                                <span className={'category-details-item-desc'}>
+                                    {detail.description}
+                                </span>
                             </div>
                         );
                     }}

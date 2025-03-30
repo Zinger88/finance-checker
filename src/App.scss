@@ -271,15 +271,26 @@
     }
     &-item {
         font-weight: 300;
-        border: 1px solid var(--main-color);
+        border: 1px dashed rgba(0, 0, 0, 0.1);
         padding: 10px;
-        border-radius: 15px;
+        border-radius: var(--border-radius);
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
+        gap: 3px;
+        &-amount {
+            flex: 0 0 80px;
+            font-size: 13px;
+        }
+        &-desc {
+            font-size: 12px;
+        }
 
         &-date {
             font-size: 10px;
+            flex: 0 0 80px;
+            display: flex;
+            justify-content: center;
         }
     }
 }
