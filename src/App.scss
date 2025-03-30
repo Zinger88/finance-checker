@@ -247,6 +247,7 @@
     background: rgba(255, 255, 255, 1);
     padding: 30px;
     border-radius: 15px;
+    overflow: auto;
     &-close {
         position: absolute;
         right: 20px;

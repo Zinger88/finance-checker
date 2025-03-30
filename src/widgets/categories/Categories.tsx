@@ -9,6 +9,14 @@ function CategoryDetails(props: {
     details: { expenses: any; categoryName: string };
     element: (detail: any) => JSX.Element;
 }) {
+    const sortedExpenses: any = JSON.parse(
+        JSON.stringify(props.details.expenses)
+    ).sort((a: any, b: any) => {
+        if (b.date.seconds !== a.date.seconds) {
+            return b.date.seconds - a.date.seconds;
+        }
+        return b.date.nanoseconds - a.date.nanoseconds;
+    });
     return (
         <div className="category-details">
             <div
@@ -22,7 +30,7 @@ function CategoryDetails(props: {
                 {props.details.categoryName}
             </div>
             <div className="category-details-list">
-                {props.details.expenses.map(props.element)}
+                {sortedExpenses.map(props.element)}
             </div>
         </div>
     );
@@ -38,9 +46,8 @@ export const Categories: FC = () => {
         expenses: any;
         categoryName: string;
     } | null>(null);
-    console.log(categoriesObject);
     const handleCategoryClick = (categoryName: string, expenses: any) => () => {
-        setDetails({ categoryName, expenses });
+        setDetails({ categoryName, expenses: expenses });
     };
     const onCloseDetails = () => {
         setDetails(null);
