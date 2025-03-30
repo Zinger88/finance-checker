@@ -46,23 +46,21 @@
   &-summ {
     text-align: center;
     font-size: 10px;
-    font-weight: 300;
   }
   &-percent {
-    opacity: .7;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 12px;
     padding: 2px;
-    border-radius: 50%;
+    border-radius: var(--border-radius);
     background: white;
     box-shadow: rgba(0,0,0,.3) 1px 1px 5px;
     position: absolute;
     bottom: -5px;
-    right: -5px;
-    font-size: 7px;
+    left: 70%;
+    font-size: 8px;
     font-weight: 800;
     text-align: center;
   }
